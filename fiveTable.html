@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Table App</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="theme2">
+      <div class="container">
+        <div id="title2">
+          <p id="choose_mode">PoolDogs multiplayer score keeper</p>
+        </div>
+    <div id="tablebutton">
+    <div id="table-container5"></div>
+    <button id="row-add" onclick="addRow()">Add Row</button>
+    </div>
+    </div>
+    </div>
+  </body>
+  <script src="fivePlayer.js"></script>
+  <script>
+    // Get the player names from the URL query parameters
+    var urlParams = new URLSearchParams(window.location.search);
+    var player1 = urlParams.get("player1");
+    var player2 = urlParams.get("player2");
+    var player3 = urlParams.get("player3");
+    var player4 = urlParams.get("player4");
+    var player5 = urlParams.get("player5");
+
+
+
+    // Create the table HTML
+    var tableHTML = "<table id='fivetable'><thead><tr><th>" + player1 + "</th><th>" + player2 + "</th><th>" + player3 + "</th><th>" + player4 + "</th><th>" + player5 + "</th></tr></thead><tbody>";
+    for (var i = 1; i <= 10; i++) {
+      tableHTML += "<tr><td><input value=''></td><td><input value=''></td><td><input value=''></td><td><input value=''></td><td><input value=''></td></tr>";
+    }
+    tableHTML += "</tbody><tfoot><tr><td>" + player1 + " Score: <span id='player1score'>0</span></td><td>" + player2 + " Score: <span id='player2score'>0</span></td><td>" + player3 + " Score: <span id='player3score'>0</span></td><td>" + player4 + " Score: <span id='player4score'>0</span></td><td>" + player5 + " Score: <span id='player5score'>0</span></td></tr></tfoot></table>";
+
+    // Write the table HTML to the page
+    document.getElementById("table-container5").innerHTML = tableHTML;
+
+    // Add event listeners to the table inputs
+    var tableInputs = document.querySelectorAll("input");
+    tableInputs.forEach(function(input) {
+      input.addEventListener("change", function() {
+        calculateScore();
+      });
+    });
+
+   
+  </script>
+</html>
